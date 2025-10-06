@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap
+data:
+  config.ini: |
+    db_host = mysql-gestion-produits
+    db_user = root
+    db_password = root
+    db_name = gestion_produits

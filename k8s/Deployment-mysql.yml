@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-gestion-produits
+spec:
+  selector:
+    matchLabels:
+      app: mysql-gestion-produits
+  template:
+    metadata:
+      labels:
+        app: mysql-gestion-produits
+    spec:
+      containers:
+      - name: mysql-gestion-produits
+        image: clairesbaffe/mysql-gestion-produits:1.0
+        ports:
+        - containerPort: 3306
+        env: 
+          - name: MYSQL_ROOT_PASSWORD
+            value: root
+        volumeMounts:
+        - name: mysql-data-pvc
+          mountPath: /var/lib/mysql
+
+      volumes:
+      - name: mysql-data-pvc
+        persistentVolumeClaim:
+          claimName: pvc

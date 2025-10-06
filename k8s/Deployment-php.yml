@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-gestion-produits
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: php-gestion-produits
+  template:
+    metadata:
+      labels:
+        app: php-gestion-produits
+    spec:
+      containers:
+      - name: php-gestion-produits
+        image: clairesbaffe/php-gestion-produits:1.0
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: configmap
+          mountPath: /var/www/config.ini
+          subPath: config.ini
+
+      volumes:
+      - name: configmap
+        configMap:
+          name:  configmap
