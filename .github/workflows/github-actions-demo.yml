@@ -1,5 +1,5 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: GitHub Actions Kubernetes
+run-name: ${{ github.actor }} is deploying to Kube
 on: [push]
 jobs:
   Explore-GitHub-Actions:
@@ -21,7 +21,7 @@ jobs:
 
       - name: Deploy app
         run: |
-          kubectl apply -f k8s
+          kubectl apply -f ./k8s
 
 
     #   - run: docker build -t clairesbaffe/php-gestion-produits ./php
