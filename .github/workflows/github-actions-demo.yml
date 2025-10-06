@@ -4,6 +4,7 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+
     steps:
       - name: Set up kubectl
         uses: azure/setup-kubectl@v4
@@ -17,7 +18,7 @@ jobs:
 
       - name: Verify connection
         run: kubectl get nodes
-        
+
 
     #   - run: docker build -t clairesbaffe/php-gestion-produits ./php
     #   - run: docker build -t clairesbaffe/mysql-gestion-produits ./database
