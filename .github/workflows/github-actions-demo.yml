@@ -13,8 +13,8 @@ jobs:
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
 
-      - run: docker build -t clairesbaffe/php-gestion-produits .
-      - run: docker build -t clairesbaffe/mysql-gestion-produits .
+      - run: docker build -t clairesbaffe/php-gestion-produits ./php
+      - run: docker build -t clairesbaffe/mysql-gestion-produits ./database
 
       - name: List files in the repository
         run: |
