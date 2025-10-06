@@ -17,7 +17,7 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
 
       - name: Verify connection
-        run: kubectl get nodes
+        run: kubectl get nodes --namespace claire
 
 
     #   - run: docker build -t clairesbaffe/php-gestion-produits ./php
