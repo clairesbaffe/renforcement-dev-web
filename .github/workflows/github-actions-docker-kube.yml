@@ -1,8 +1,8 @@
 name: GitHub Actions Kubernetes
-run-name: ${{ github.actor }} is deploying to Kube
+run-name: ${{ github.actor }} is building and pushing Docker images to Docker Hub, and deploying app to Kube
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Build-Deploy-Docker-Images:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,12 @@ jobs:
             docker push ${{ secrets.DOCKER_USERNAME }}/php-gestion-produits:1.0
             docker push ${{ secrets.DOCKER_USERNAME }}/mysql-gestion-produits:1.0
 
+  Deploy-To-Kube:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up kubectl
         uses: azure/setup-kubectl@v4
@@ -35,7 +40,8 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
 
       - name: Verify connection
-        run: kubectl get pods --namespace claire
+        run: kubectl get nodes
+        # run: kubectl get pods --namespace claire
 
       - name: Deploy app
         run: |
