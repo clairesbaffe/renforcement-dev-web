@@ -42,7 +42,6 @@ jobs:
 
       - name: Verify connection
         run: kubectl get nodes
-        # run: kubectl get pods --namespace claire
 
       - name: Deploy app
         run: |
