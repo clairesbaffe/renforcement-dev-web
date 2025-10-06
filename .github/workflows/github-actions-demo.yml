@@ -17,6 +17,7 @@ jobs:
 
       - name: Verify connection
         run: kubectl get nodes
+        
 
     #   - run: docker build -t clairesbaffe/php-gestion-produits ./php
     #   - run: docker build -t clairesbaffe/mysql-gestion-produits ./database
