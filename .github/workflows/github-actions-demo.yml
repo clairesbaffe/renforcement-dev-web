@@ -6,6 +6,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    #   - name: Build Docker images 
+    #     run: | 
+    #         docker build -t clairesbaffe/php-gestion-produits:1.0 ./php
+    #         docker build -t clairesbaffe/mysql-gestion-produits:1.0 ./database
+
+    #   - name: Push images to Docker Hub
+    #     run: |
+    #         docker push clairesbaffe/php-gestion-produits:1.0
+    #         docker push clairesbaffe/mysql-gestion-produits:1.0
+
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -26,7 +37,3 @@ jobs:
       - name: Deploy app
         run: |
           kubectl apply -f k8s
-
-
-    #   - run: docker build -t clairesbaffe/php-gestion-produits ./php
-    #   - run: docker build -t clairesbaffe/mysql-gestion-produits ./database
