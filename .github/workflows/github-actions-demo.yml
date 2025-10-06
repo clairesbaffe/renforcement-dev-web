@@ -5,18 +5,18 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v5
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: 'latest'
 
-      - run: docker build -t clairesbaffe/php-gestion-produits ./php
-      - run: docker build -t clairesbaffe/mysql-gestion-produits ./database
-
-      - name: List files in the repository
+      - name: Configure Kubeconfig
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
+
+      - name: Verify connection
+        run: kubectl get nodes
+
+    #   - run: docker build -t clairesbaffe/php-gestion-produits ./php
+    #   - run: docker build -t clairesbaffe/mysql-gestion-produits ./database
