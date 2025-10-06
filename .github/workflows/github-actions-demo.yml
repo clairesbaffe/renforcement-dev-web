@@ -19,6 +19,10 @@ jobs:
       - name: Verify connection
         run: kubectl get pods --namespace claire
 
+      - name: Deploy app
+        run: |
+          kubectl apply -f k8s
+
 
     #   - run: docker build -t clairesbaffe/php-gestion-produits ./php
     #   - run: docker build -t clairesbaffe/mysql-gestion-produits ./database
